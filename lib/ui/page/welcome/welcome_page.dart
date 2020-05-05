@@ -16,8 +16,9 @@ class _WelcomePageState extends State<WelcomePage> {
         width: double.infinity,
         decoration: BoxDecoration(
           image: DecorationImage(
-            image: AssetImage('images/welcome_image1.jpg'),
+            image: AssetImage('images/welcome_image3.jpg'),
             fit: BoxFit.fitHeight,
+            colorFilter: ColorFilter.mode(Colors.black26, BlendMode.darken),
           ),
         ),
         child: Column(
@@ -37,10 +38,14 @@ class _WelcomePageState extends State<WelcomePage> {
                       ),
                   textAlign: TextAlign.center,
                 ),
+                const SizedBox(
+                  height: 10,
+                ),
                 Text(
                   '欲しいものを集めて\nシェアしよう',
                   style: Theme.of(context).textTheme.subhead.copyWith(
                         color: Colors.white,
+                        height: 1.3,
                       ),
                   textAlign: TextAlign.center,
                 ),
@@ -65,7 +70,7 @@ class _WelcomePageState extends State<WelcomePage> {
                       child: Center(
                         child: Text(
                           'メールアドレスで登録',
-                          style: Theme.of(context).textTheme.subhead.copyWith(
+                          style: Theme.of(context).textTheme.display3.copyWith(
                                 color: Colors.white,
                                 fontWeight: FontWeight.bold,
                               ),
@@ -84,13 +89,13 @@ class _WelcomePageState extends State<WelcomePage> {
                       children: [
                         TextSpan(
                           text: '登録ずみの方は',
-                          style: Theme.of(context).textTheme.subhead.copyWith(
+                          style: Theme.of(context).textTheme.display3.copyWith(
                                 color: Colors.white,
                               ),
                         ),
                         TextSpan(
                           text: 'ログイン',
-                          style: Theme.of(context).textTheme.subhead.copyWith(
+                          style: Theme.of(context).textTheme.display3.copyWith(
                                 color: Colors.white,
                                 decoration: TextDecoration.underline,
                               ),
