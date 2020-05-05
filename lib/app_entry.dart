@@ -9,12 +9,15 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: StateNotifierProvider<SplashStateNotifier, SplashState>(
-        child: SplashPage(),
-        create: (context) => SplashStateNotifier(),
-      ),
       onGenerateRoute: (settings) {
         switch (settings.name) {
+          case SplashPage.routeName:
+            return _buildPageRoute(
+              StateNotifierProvider<SplashStateNotifier, SplashState>(
+                child: SplashPage(),
+                create: (context) => SplashStateNotifier(),
+              ),
+            );
           case WelcomePage.routeName:
             return _buildPageRoute(
               StateNotifierProvider<WelcomeStateNotifier, WelcomeState>(

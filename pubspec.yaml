@@ -10,7 +10,9 @@ dependencies:
     sdk: flutter
   cupertino_icons: ^0.1.2
   freezed_annotation:
+  state_notifier:
   flutter_state_notifier:
+  provider:
 
 dev_dependencies:
   flutter_test:
