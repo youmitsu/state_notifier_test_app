@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:provider/provider.dart';
 import 'package:state_notifier/state_notifier.dart';
-import 'package:state_notifier_test_app/ui/page/pages.dart';
+
+import 'state/splash_state.dart';
 
 class SplashPage extends StatefulWidget {
   static const String routeName = '/';
@@ -15,7 +17,8 @@ class _SplashPageState extends State<SplashPage> with LocatorMixin {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      Navigator.of(context).pushNamed(WelcomePage.routeName);
+      Provider.of<SplashStateNotifier>(context, listen: false)
+          .moveToFirstPage(context);
     });
   }
 
