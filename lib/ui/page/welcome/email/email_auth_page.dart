@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:state_notifier_test_app/ui/page/welcome/loading/submit_loading_page.dart';
 import 'package:state_notifier_test_app/ui/widget/submit_rounded_btn.dart';
 
 class EmailAuthPage extends StatefulWidget {
@@ -61,7 +62,9 @@ class _EmailAuthPageState extends State<EmailAuthPage> {
               ),
               SubmitRoundedBtn(
                 text: '登録する',
-                onTap: () {},
+                onTap: () {
+                  Navigator.of(context).pushNamed(SubmitLoadingPage.routeName);
+                },
               ),
               const SizedBox(
                 height: 30,
