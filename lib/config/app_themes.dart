@@ -8,6 +8,8 @@ abstract class AbstractTheme {
 
 class BaseTheme extends AbstractTheme {
   static final commonThemeData = ThemeData(
+    pageTransitionsTheme: PageTransitionsTheme(
+        builders: {TargetPlatform.android, ZoomPageTransitionsBuilder}),
     textTheme: TextTheme(
       title: TextStyle(
         fontSize: 30,
