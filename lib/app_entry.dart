@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_state_notifier/flutter_state_notifier.dart';
 import 'package:state_notifier_test_app/config/app_themes.dart';
+import 'package:state_notifier_test_app/ui/page/signup/state/signup_form_state.dart';
 import 'package:state_notifier_test_app/ui/page/splash/state/splash_state.dart';
 import 'package:state_notifier_test_app/ui/page/welcome/state/welcome_state.dart';
 
@@ -18,14 +19,21 @@ class App extends StatelessWidget {
             return _buildPageRoute(
               StateNotifierProvider<SplashStateNotifier, SplashState>(
                 child: SplashPage(),
-                create: (context) => SplashStateNotifier(),
+                create: (_) => SplashStateNotifier(),
               ),
             );
           case WelcomePage.routeName:
             return _buildPageRoute(
               StateNotifierProvider<WelcomeStateNotifier, WelcomeState>(
                 child: WelcomePage(),
-                create: (context) => WelcomeStateNotifier(),
+                create: (_) => WelcomeStateNotifier(),
+              ),
+            );
+          case SignUpFormPage.routeName:
+            return _buildPageRoute(
+              StateNotifierProvider<SignUpFormStateNotifier, SignUpFormState>(
+                child: SignUpFormPage(),
+                create: (_) => SignUpFormStateNotifier(),
               ),
             );
           default:

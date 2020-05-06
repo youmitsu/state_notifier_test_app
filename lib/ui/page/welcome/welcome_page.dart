@@ -2,6 +2,8 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:state_notifier_test_app/ui/page/pages.dart';
+import 'package:state_notifier_test_app/ui/widget/submit_rounded_btn.dart';
 
 class WelcomePage extends StatefulWidget {
   static const routeName = '/welcome';
@@ -86,31 +88,11 @@ class _WelcomePageState extends State<WelcomePage> {
               Column(
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
-                  Container(
-                    width: 260,
-                    height: 50,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(30),
-                      color: Colors.orange,
-                    ),
-                    child: Material(
-                      color: Colors.transparent,
-                      borderRadius: BorderRadius.circular(30),
-                      child: InkWell(
-                        borderRadius: BorderRadius.circular(30),
-                        onTap: () {},
-                        child: Center(
-                          child: Text(
-                            'メールアドレスで登録',
-                            style:
-                                Theme.of(context).textTheme.display3.copyWith(
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                          ),
-                        ),
-                      ),
-                    ),
+                  SubmitRoundedBtn(
+                    text: 'メールアドレスで登録',
+                    onTap: () {
+                      Navigator.of(context).pushNamed(SignUpFormPage.routeName);
+                    },
                   ),
                   const SizedBox(
                     height: 14,
