@@ -65,7 +65,6 @@ class WelcomeTheme extends BaseTheme {
   ThemeData get darkTheme => super.darkTheme.copyWith(
         scaffoldBackgroundColor: Colors.transparent,
         appBarTheme: AppBarTheme(
-          elevation: 0,
           color: Colors.transparent,
         ),
       );
@@ -74,7 +73,6 @@ class WelcomeTheme extends BaseTheme {
   ThemeData get lightTheme => super.lightTheme.copyWith(
         scaffoldBackgroundColor: Colors.transparent,
         appBarTheme: AppBarTheme(
-          elevation: 0,
           color: Colors.transparent,
         ),
       );

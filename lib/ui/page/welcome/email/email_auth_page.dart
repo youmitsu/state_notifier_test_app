@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:state_notifier_test_app/ui/widget/submit_rounded_btn.dart';
 
-class SignUpFormPage extends StatefulWidget {
+class EmailAuthPage extends StatefulWidget {
   static const String routeName = '/signup';
 
   final PageController pageController;
 
-  SignUpFormPage(this.pageController);
+  EmailAuthPage(this.pageController);
 
   @override
-  _SignUpFormPageState createState() => _SignUpFormPageState();
+  _EmailAuthPageState createState() => _EmailAuthPageState();
 }
 
-class _SignUpFormPageState extends State<SignUpFormPage> {
+class _EmailAuthPageState extends State<EmailAuthPage> {
   static const double verticalMargin = 50;
 
   @override
@@ -27,8 +27,10 @@ class _SignUpFormPageState extends State<SignUpFormPage> {
       },
       child: Scaffold(
         appBar: AppBar(
+          centerTitle: true,
           title: Text('メールアドレスで登録'),
           backgroundColor: Colors.transparent,
+          leading: BackButton(),
         ),
         body: Container(
           padding: const EdgeInsets.symmetric(vertical: 30),

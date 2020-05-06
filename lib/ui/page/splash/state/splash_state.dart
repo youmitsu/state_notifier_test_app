@@ -16,7 +16,7 @@ class SplashStateNotifier extends StateNotifier<SplashState> with LocatorMixin {
 
   Future<void> moveToFirstPage(BuildContext context) async {
     Future.delayed(Duration(milliseconds: 200), () {
-      Navigator.of(context).pushNamed(WelcomePage.routeName);
+      Navigator.of(context).pushReplacementNamed(WelcomePage.routeName);
     });
   }
 }

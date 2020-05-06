@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 import 'about/about_page.dart';
-import 'signup/signup_form_page.dart';
+import 'email/email_auth_page.dart';
 
 class WelcomePage extends StatefulWidget {
   static const routeName = '/welcome';
@@ -31,7 +31,7 @@ class _WelcomePageState extends State<WelcomePage> {
     pageController = PageController();
     _pages = [
       AboutPage(pageController),
-      SignUpFormPage(pageController),
+      EmailAuthPage(pageController),
     ];
     Timer.periodic(const Duration(seconds: 3), (_) {
       setState(() {
