@@ -13,7 +13,7 @@ class SignUpFormPage extends StatefulWidget {
 }
 
 class _SignUpFormPageState extends State<SignUpFormPage> {
-  static const double verticalMargin = 150;
+  static const double verticalMargin = 50;
 
   @override
   Widget build(BuildContext context) {
@@ -25,77 +25,69 @@ class _SignUpFormPageState extends State<SignUpFormPage> {
         );
         return false;
       },
-      child: Container(
-        child: Column(
-          children: <Widget>[
-            SizedBox(
-              height: verticalMargin + MediaQuery.of(context).padding.top,
-            ),
-            Text(
-              'メールアドレスで登録',
-              style: Theme.of(context).textTheme.headline.copyWith(
-                    color: Colors.white,
-                  ),
-            ),
-            Expanded(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  Container(
-                    height: 50,
-                    width: 300,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      color: Colors.white.withOpacity(0.9),
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 16,
-                  ),
-                  Container(
-                    height: 50,
-                    width: 300,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      color: Colors.white.withOpacity(0.9),
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 16,
-                  ),
-                  SubmitRoundedBtn(
-                    text: '登録する',
-                    onTap: () {},
-                  ),
-                ],
-              ),
-            ),
-            Container(
-              alignment: Alignment.center,
-              child: RichText(
-                text: TextSpan(
-                  children: [
-                    TextSpan(
-                      text: ' 利用規約 ',
-                      style: Theme.of(context).textTheme.display4.copyWith(
-                            color: Colors.white,
-                            decoration: TextDecoration.underline,
-                          ),
-                    ),
-                    TextSpan(
-                      text: 'に同意の上、ご利用ください',
-                      style: Theme.of(context).textTheme.display4.copyWith(
-                            color: Colors.white,
-                          ),
-                    ),
-                  ],
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text('メールアドレスで登録'),
+          backgroundColor: Colors.transparent,
+        ),
+        body: Container(
+          padding: const EdgeInsets.symmetric(vertical: 30),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              Container(
+                height: 50,
+                width: 300,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  color: Colors.white.withOpacity(0.9),
                 ),
               ),
-            ),
-            const SizedBox(
-              height: 100,
-            ),
-          ],
+              const SizedBox(
+                height: 16,
+              ),
+              Container(
+                height: 50,
+                width: 300,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  color: Colors.white.withOpacity(0.9),
+                ),
+              ),
+              const SizedBox(
+                height: 16,
+              ),
+              SubmitRoundedBtn(
+                text: '登録する',
+                onTap: () {},
+              ),
+              const SizedBox(
+                height: 30,
+              ),
+              Container(
+                alignment: Alignment.center,
+                child: RichText(
+                  text: TextSpan(
+                    children: [
+                      TextSpan(
+                        text: ' 利用規約 ',
+                        style: Theme.of(context).textTheme.display4.copyWith(
+                              color: Colors.white,
+                              decoration: TextDecoration.underline,
+                            ),
+                      ),
+                      TextSpan(
+                        text: 'に同意の上、ご利用ください',
+                        style: Theme.of(context).textTheme.display4.copyWith(
+                              color: Colors.white,
+                            ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

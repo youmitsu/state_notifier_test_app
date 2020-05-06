@@ -59,3 +59,23 @@ class BaseTheme extends AbstractTheme {
         scaffoldBackgroundColor: Colors.black,
       );
 }
+
+class WelcomeTheme extends BaseTheme {
+  @override
+  ThemeData get darkTheme => super.darkTheme.copyWith(
+        scaffoldBackgroundColor: Colors.transparent,
+        appBarTheme: AppBarTheme(
+          elevation: 0,
+          color: Colors.transparent,
+        ),
+      );
+
+  @override
+  ThemeData get lightTheme => super.lightTheme.copyWith(
+        scaffoldBackgroundColor: Colors.transparent,
+        appBarTheme: AppBarTheme(
+          elevation: 0,
+          color: Colors.transparent,
+        ),
+      );
+}

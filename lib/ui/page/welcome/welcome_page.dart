@@ -68,6 +68,7 @@ class _WelcomePageState extends State<WelcomePage> {
           ),
           PageView.builder(
             controller: pageController,
+            physics: NeverScrollableScrollPhysics(),
             itemBuilder: (context, index) {
               return _pages[index];
             },

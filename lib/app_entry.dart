@@ -11,8 +11,8 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: BaseTheme().lightTheme,
-      darkTheme: BaseTheme().darkTheme,
+      theme: WelcomeTheme().lightTheme,
+      darkTheme: WelcomeTheme().darkTheme,
       onGenerateRoute: (settings) {
         switch (settings.name) {
           case SplashPage.routeName:
