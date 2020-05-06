@@ -47,27 +47,32 @@ class _WelcomePageState extends State<WelcomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: AnimatedSwitcher(
-        duration: Duration(milliseconds: 800),
-        child: Container(
-          key: ValueKey<String>(backgroundImages[imageIndex]),
-          width: double.infinity,
-          decoration: BoxDecoration(
-            color: Colors.black45,
-            backgroundBlendMode: BlendMode.darken,
-            image: DecorationImage(
-              image: AssetImage(backgroundImages[imageIndex]),
-              fit: BoxFit.fitHeight,
-              colorFilter: ColorFilter.mode(Colors.black45, BlendMode.darken),
+      body: Stack(
+        children: <Widget>[
+          AnimatedSwitcher(
+            duration: Duration(milliseconds: 800),
+            child: Container(
+              key: ValueKey<String>(backgroundImages[imageIndex]),
+              width: double.infinity,
+              decoration: BoxDecoration(
+                color: Colors.black45,
+                backgroundBlendMode: BlendMode.darken,
+                image: DecorationImage(
+                  image: AssetImage(backgroundImages[imageIndex]),
+                  fit: BoxFit.fitHeight,
+                  colorFilter:
+                      ColorFilter.mode(Colors.black45, BlendMode.darken),
+                ),
+              ),
             ),
           ),
-          child: PageView.builder(
+          PageView.builder(
             controller: pageController,
             itemBuilder: (context, index) {
               return _pages[index];
             },
           ),
-        ),
+        ],
       ),
     );
   }
