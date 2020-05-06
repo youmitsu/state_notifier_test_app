@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
@@ -9,107 +11,141 @@ class WelcomePage extends StatefulWidget {
 }
 
 class _WelcomePageState extends State<WelcomePage> {
+  static const double verticalMargin = 170;
+
+  final backgroundImages = [
+    'images/welcome_image1.jpg',
+    'images/welcome_image2.jpg',
+    'images/welcome_image3.jpg',
+  ];
+
+  int imageIndex = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    Timer.periodic(const Duration(seconds: 3), (_) {
+      setState(() {
+        if (imageIndex == backgroundImages.length - 1) {
+          imageIndex = 0;
+        } else if (imageIndex < backgroundImages.length - 1) {
+          imageIndex++;
+        }
+      });
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        width: double.infinity,
-        decoration: BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage('images/welcome_image3.jpg'),
-            fit: BoxFit.fitHeight,
-            colorFilter: ColorFilter.mode(Colors.black26, BlendMode.darken),
+      body: AnimatedSwitcher(
+        duration: Duration(milliseconds: 800),
+        child: Container(
+          key: ValueKey<String>(backgroundImages[imageIndex]),
+          width: double.infinity,
+          decoration: BoxDecoration(
+            color: Colors.black45,
+            backgroundBlendMode: BlendMode.darken,
+            image: DecorationImage(
+              image: AssetImage(backgroundImages[imageIndex]),
+              fit: BoxFit.fitHeight,
+              colorFilter: ColorFilter.mode(Colors.black45, BlendMode.darken),
+            ),
           ),
-        ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: <Widget>[
-            Column(
-              mainAxisSize: MainAxisSize.min,
-              children: <Widget>[
-                const SizedBox(
-                  height: 170,
-                ),
-                Text(
-                  'Posityへようこそ',
-                  style: Theme.of(context).textTheme.title.copyWith(
-                        color: Colors.white,
-                        letterSpacing: 2,
-                      ),
-                  textAlign: TextAlign.center,
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                Text(
-                  '欲しいものを集めて\nシェアしよう',
-                  style: Theme.of(context).textTheme.subhead.copyWith(
-                        color: Colors.white,
-                        height: 1.3,
-                      ),
-                  textAlign: TextAlign.center,
-                ),
-              ],
-            ),
-            Column(
-              mainAxisSize: MainAxisSize.min,
-              children: <Widget>[
-                Container(
-                  width: 260,
-                  height: 50,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(30),
-                    color: Colors.orange,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: <Widget>[
+              Column(
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  SizedBox(
+                    height: MediaQuery.of(context).padding.top + verticalMargin,
                   ),
-                  child: Material(
-                    color: Colors.transparent,
-                    borderRadius: BorderRadius.circular(30),
-                    child: InkWell(
+                  Text(
+                    'Posityへようこそ',
+                    style: Theme.of(context).textTheme.title.copyWith(
+                          color: Colors.white,
+                          letterSpacing: 2,
+                        ),
+                    textAlign: TextAlign.center,
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  Text(
+                    '欲しいものを集めて\nシェアしよう',
+                    style: Theme.of(context).textTheme.subhead.copyWith(
+                          color: Colors.white,
+                          height: 1.3,
+                          letterSpacing: 1.1,
+                        ),
+                    textAlign: TextAlign.center,
+                  ),
+                ],
+              ),
+              Column(
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  Container(
+                    width: 260,
+                    height: 50,
+                    decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(30),
-                      onTap: () {},
-                      child: Center(
-                        child: Text(
-                          'メールアドレスで登録',
-                          style: Theme.of(context).textTheme.display3.copyWith(
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold,
-                              ),
+                      color: Colors.orange,
+                    ),
+                    child: Material(
+                      color: Colors.transparent,
+                      borderRadius: BorderRadius.circular(30),
+                      child: InkWell(
+                        borderRadius: BorderRadius.circular(30),
+                        onTap: () {},
+                        child: Center(
+                          child: Text(
+                            'メールアドレスで登録',
+                            style:
+                                Theme.of(context).textTheme.display3.copyWith(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                          ),
                         ),
                       ),
                     ),
                   ),
-                ),
-                const SizedBox(
-                  height: 14,
-                ),
-                Container(
-                  alignment: Alignment.center,
-                  child: RichText(
-                    text: TextSpan(
-                      children: [
-                        TextSpan(
-                          text: '登録ずみの方は',
-                          style: Theme.of(context).textTheme.display3.copyWith(
-                                color: Colors.white,
-                              ),
-                        ),
-                        TextSpan(
-                          text: 'ログイン',
-                          style: Theme.of(context).textTheme.display3.copyWith(
-                                color: Colors.white,
-                                decoration: TextDecoration.underline,
-                              ),
-                        ),
-                      ],
+                  const SizedBox(
+                    height: 14,
+                  ),
+                  Container(
+                    alignment: Alignment.center,
+                    child: RichText(
+                      text: TextSpan(
+                        children: [
+                          TextSpan(
+                            text: '登録ずみの方は',
+                            style:
+                                Theme.of(context).textTheme.display4.copyWith(
+                                      color: Colors.white,
+                                    ),
+                          ),
+                          TextSpan(
+                            text: ' ログイン ',
+                            style:
+                                Theme.of(context).textTheme.display4.copyWith(
+                                      color: Colors.white,
+                                      decoration: TextDecoration.underline,
+                                    ),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
-                ),
-                const SizedBox(
-                  height: 150,
-                ),
-              ],
-            ),
-          ],
+                  const SizedBox(
+                    height: 150,
+                  ),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );
