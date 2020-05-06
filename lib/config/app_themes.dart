@@ -50,10 +50,12 @@ class BaseTheme extends AbstractTheme {
   @override
   ThemeData get darkTheme => commonThemeData.copyWith(
         brightness: Brightness.dark,
+        scaffoldBackgroundColor: Colors.black,
       );
 
   @override
   ThemeData get lightTheme => commonThemeData.copyWith(
         brightness: Brightness.light,
+        scaffoldBackgroundColor: Colors.black,
       );
 }

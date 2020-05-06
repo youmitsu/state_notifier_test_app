@@ -2,8 +2,9 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:state_notifier_test_app/ui/page/pages.dart';
-import 'package:state_notifier_test_app/ui/widget/submit_rounded_btn.dart';
+
+import 'about/about_page.dart';
+import 'signup/signup_form_page.dart';
 
 class WelcomePage extends StatefulWidget {
   static const routeName = '/welcome';
@@ -13,8 +14,6 @@ class WelcomePage extends StatefulWidget {
 }
 
 class _WelcomePageState extends State<WelcomePage> {
-  static const double verticalMargin = 170;
-
   final backgroundImages = [
     'images/welcome_image1.jpg',
     'images/welcome_image2.jpg',
@@ -22,10 +21,18 @@ class _WelcomePageState extends State<WelcomePage> {
   ];
 
   int imageIndex = 0;
+  PageController pageController;
+
+  List<Widget> _pages;
 
   @override
   void initState() {
     super.initState();
+    pageController = PageController();
+    _pages = [
+      AboutPage(pageController),
+      SignUpFormPage(pageController),
+    ];
     Timer.periodic(const Duration(seconds: 3), (_) {
       setState(() {
         if (imageIndex == backgroundImages.length - 1) {
@@ -54,79 +61,11 @@ class _WelcomePageState extends State<WelcomePage> {
               colorFilter: ColorFilter.mode(Colors.black45, BlendMode.darken),
             ),
           ),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[
-              Column(
-                mainAxisSize: MainAxisSize.min,
-                children: <Widget>[
-                  SizedBox(
-                    height: MediaQuery.of(context).padding.top + verticalMargin,
-                  ),
-                  Text(
-                    'Posityへようこそ',
-                    style: Theme.of(context).textTheme.title.copyWith(
-                          color: Colors.white,
-                          letterSpacing: 2,
-                        ),
-                    textAlign: TextAlign.center,
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  Text(
-                    '欲しいものを集めて\nシェアしよう',
-                    style: Theme.of(context).textTheme.subhead.copyWith(
-                          color: Colors.white,
-                          height: 1.3,
-                          letterSpacing: 1.1,
-                        ),
-                    textAlign: TextAlign.center,
-                  ),
-                ],
-              ),
-              Column(
-                mainAxisSize: MainAxisSize.min,
-                children: <Widget>[
-                  SubmitRoundedBtn(
-                    text: 'メールアドレスで登録',
-                    onTap: () {
-                      Navigator.of(context).pushNamed(SignUpFormPage.routeName);
-                    },
-                  ),
-                  const SizedBox(
-                    height: 14,
-                  ),
-                  Container(
-                    alignment: Alignment.center,
-                    child: RichText(
-                      text: TextSpan(
-                        children: [
-                          TextSpan(
-                            text: '登録ずみの方は',
-                            style:
-                                Theme.of(context).textTheme.display4.copyWith(
-                                      color: Colors.white,
-                                    ),
-                          ),
-                          TextSpan(
-                            text: ' ログイン ',
-                            style:
-                                Theme.of(context).textTheme.display4.copyWith(
-                                      color: Colors.white,
-                                      decoration: TextDecoration.underline,
-                                    ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 150,
-                  ),
-                ],
-              ),
-            ],
+          child: PageView.builder(
+            controller: pageController,
+            itemBuilder: (context, index) {
+              return _pages[index];
+            },
           ),
         ),
       ),

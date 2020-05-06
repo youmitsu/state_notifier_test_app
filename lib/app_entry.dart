@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_state_notifier/flutter_state_notifier.dart';
 import 'package:state_notifier_test_app/config/app_themes.dart';
 import 'package:state_notifier_test_app/navigation/nav_type.dart';
-import 'package:state_notifier_test_app/ui/page/signup/state/signup_form_state.dart';
 import 'package:state_notifier_test_app/ui/page/splash/state/splash_state.dart';
 import 'package:state_notifier_test_app/ui/page/welcome/state/welcome_state.dart';
 
@@ -31,14 +30,14 @@ class App extends StatelessWidget {
                 create: (_) => WelcomeStateNotifier(),
               ),
             );
-          case SignUpFormPage.routeName:
-            return _buildPageRoute(
-              StateNotifierProvider<SignUpFormStateNotifier, SignUpFormState>(
-                child: SignUpFormPage(),
-                create: (_) => SignUpFormStateNotifier(),
-              ),
-              navType: NavType.slide,
-            );
+//          case SignUpFormPage.routeName:
+//            return _buildPageRoute(
+//              StateNotifierProvider<SignUpFormStateNotifier, SignUpFormState>(
+//                child: SignUpFormPage(),
+//                create: (_) => SignUpFormStateNotifier(),
+//              ),
+//              navType: NavType.slide,
+//            );
           default:
             return MaterialPageRoute(
               builder: (_) => Center(
