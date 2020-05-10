@@ -17,6 +17,7 @@ dependencies:
   state_notifier: ^0.4.0
   flutter_state_notifier: ^0.4.0
   provider: ^4.1.0-dev
+  get_it:
 
   # Firebase
   firebase_core:
