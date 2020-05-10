@@ -4,22 +4,22 @@ import 'package:get_it/get_it.dart';
 import 'package:state_notifier/state_notifier.dart';
 import 'package:state_notifier_test_app/resource/repository.dart';
 
-part 'email_auth_state.freezed.dart';
+part 'email_signup_state.freezed.dart';
 
 @freezed
-abstract class EmailAuthState with _$EmailAuthState {
-  const factory EmailAuthState({
+abstract class EmailSignUpState with _$EmailSignUpState {
+  const factory EmailSignUpState({
     @Default('') String email,
     @Default('') String password,
-  }) = _EmailAuthState;
+  }) = _EmailSignUpState;
 }
 
-class SignUpFormStateNotifier extends StateNotifier<EmailAuthState> {
+class EmailSignUpStateNotifier extends StateNotifier<EmailSignUpState> {
   final AccountRepository _accountRepository;
 
-  SignUpFormStateNotifier()
+  EmailSignUpStateNotifier()
       : _accountRepository = GetIt.instance.get<AccountRepository>(),
-        super(const EmailAuthState());
+        super(const EmailSignUpState());
 
   signUp() async {
     final email = state.email;

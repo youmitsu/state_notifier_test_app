@@ -2,20 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:state_notifier_test_app/ui/widget/submit_rounded_btn.dart';
 
-import 'state/email_auth_state.dart';
+import 'state/email_signup_state.dart';
 
-class EmailAuthPage extends StatefulWidget {
+class EmailSignUpPage extends StatefulWidget {
   static const String routeName = '/signup';
 
   final PageController pageController;
 
-  EmailAuthPage(this.pageController);
+  EmailSignUpPage(this.pageController);
 
   @override
-  _EmailAuthPageState createState() => _EmailAuthPageState();
+  _EmailSignUpPageState createState() => _EmailSignUpPageState();
 }
 
-class _EmailAuthPageState extends State<EmailAuthPage> {
+class _EmailSignUpPageState extends State<EmailSignUpPage> {
   static const double verticalMargin = 50;
 
   @override
@@ -65,7 +65,7 @@ class _EmailAuthPageState extends State<EmailAuthPage> {
               SubmitRoundedBtn(
                 text: '登録する',
                 onTap: () {
-                  context.read<SignUpFormStateNotifier>().signUp();
+                  context.read<EmailSignUpStateNotifier>().signUp();
 //                  Navigator.of(context).pushNamed(SubmitLoadingPage.routeName);
                 },
               ),

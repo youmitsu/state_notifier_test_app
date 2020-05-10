@@ -2,9 +2,11 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_state_notifier/flutter_state_notifier.dart';
+import 'package:state_notifier_test_app/ui/page/welcome/signup/email_signup_page.dart';
+import 'package:state_notifier_test_app/ui/page/welcome/signup/state/email_signup_state.dart';
 
 import 'about/about_page.dart';
-import 'email/email_auth_page.dart';
 
 class WelcomePage extends StatefulWidget {
   static const routeName = '/welcome';
@@ -31,7 +33,10 @@ class _WelcomePageState extends State<WelcomePage> {
     pageController = PageController();
     _pages = [
       AboutPage(pageController),
-      EmailAuthPage(pageController),
+      StateNotifierProvider<EmailSignUpStateNotifier, EmailSignUpState>(
+        create: (_) => EmailSignUpStateNotifier(),
+        child: EmailSignUpPage(pageController),
+      ),
     ];
     Timer.periodic(const Duration(seconds: 3), (_) {
       setState(() {
