@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:state_notifier_test_app/config/app_colors.dart';
 import 'package:state_notifier_test_app/ui/widget/submit_rounded_btn.dart';
 
 import 'state/email_signup_state.dart';
@@ -41,22 +42,49 @@ class _EmailSignUpPageState extends State<EmailSignUpPage> {
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
               Container(
-                height: 50,
+                height: 56,
                 width: 300,
+                padding: const EdgeInsets.only(left: 18),
+                alignment: Alignment.centerLeft,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
                   color: Colors.white.withOpacity(0.9),
+                ),
+                child: TextFormField(
+                  keyboardType: TextInputType.emailAddress,
+                  style: Theme.of(context).textTheme.display3.copyWith(
+                        color: TextColor.black,
+                      ),
+                  decoration: InputDecoration.collapsed(hintText: 'メールアドレス'),
+                  onChanged: (value) {
+                    context.read<EmailSignUpStateNotifier>().updateEmail(value);
+                  },
                 ),
               ),
               const SizedBox(
                 height: 16,
               ),
               Container(
-                height: 50,
+                height: 56,
                 width: 300,
+                padding: const EdgeInsets.only(left: 18),
+                alignment: Alignment.centerLeft,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
                   color: Colors.white.withOpacity(0.9),
+                ),
+                child: TextFormField(
+                  keyboardType: TextInputType.visiblePassword,
+                  style: Theme.of(context).textTheme.display3.copyWith(
+                        color: TextColor.black,
+                      ),
+                  decoration: InputDecoration.collapsed(hintText: 'パスワード'),
+                  obscureText: true,
+                  onChanged: (value) {
+                    context
+                        .read<EmailSignUpStateNotifier>()
+                        .updatePassword(value);
+                  },
                 ),
               ),
               const SizedBox(
@@ -66,7 +94,6 @@ class _EmailSignUpPageState extends State<EmailSignUpPage> {
                 text: '登録する',
                 onTap: () {
                   context.read<EmailSignUpStateNotifier>().signUp();
-//                  Navigator.of(context).pushNamed(SubmitLoadingPage.routeName);
                 },
               ),
               const SizedBox(

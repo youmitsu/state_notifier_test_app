@@ -12,6 +12,7 @@ class FirebaseAuthProvider {
       return result;
     } catch (e) {
       // TODO: ErrorHandling
+      return e;
     }
   }
 

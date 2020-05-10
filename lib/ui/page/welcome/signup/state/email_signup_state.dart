@@ -21,6 +21,14 @@ class EmailSignUpStateNotifier extends StateNotifier<EmailSignUpState> {
       : _accountRepository = GetIt.instance.get<AccountRepository>(),
         super(const EmailSignUpState());
 
+  updateEmail(String value) {
+    state = state.copyWith(email: value);
+  }
+
+  updatePassword(String value) {
+    state = state.copyWith(password: value);
+  }
+
   signUp() async {
     final email = state.email;
     final password = state.password;
