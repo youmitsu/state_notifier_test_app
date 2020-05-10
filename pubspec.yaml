@@ -8,12 +8,19 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  # UI
+  lottie:
   cupertino_icons: ^0.1.2
+
+  # Architecture
   freezed_annotation:
   state_notifier: ^0.4.0
   flutter_state_notifier: ^0.4.0
   provider: ^4.1.0-dev
-  lottie:
+
+  # Firebase
+  firebase_core:
+  firebase_auth:
 
 dev_dependencies:
   flutter_test:
