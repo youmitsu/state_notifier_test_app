@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
+import 'package:state_notifier_test_app/feature/firebase.dart';
 import 'package:state_notifier_test_app/resource/repository.dart';
 
 import 'app_entry.dart';
@@ -11,5 +12,6 @@ void main() {
 
 void setupLocator() {
   final getIt = GetIt.instance;
+  getIt.registerSingleton<FirebaseAuthProvider>(FirebaseAuthProvider());
   getIt.registerSingleton<AccountRepository>(AccountRepository());
 }
