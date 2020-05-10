@@ -1,5 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:state_notifier_test_app/ui/page/welcome/signin/email_signin_page.dart';
 import 'package:state_notifier_test_app/ui/widget/widget.dart';
 
 class AboutPage extends StatelessWidget {
@@ -80,12 +81,9 @@ class AboutPage extends StatelessWidget {
                               decoration: TextDecoration.underline,
                             ),
                         recognizer: TapGestureRecognizer()
-                          ..onTap = () async {
-                            pageController.animateToPage(
-                              1,
-                              duration: const Duration(milliseconds: 300),
-                              curve: Curves.linear,
-                            );
+                          ..onTap = () {
+                            Navigator.of(context)
+                                .pushNamed(EmailSignInPage.routeName);
                           },
                       ),
                     ],

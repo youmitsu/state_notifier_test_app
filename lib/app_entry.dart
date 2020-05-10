@@ -4,6 +4,8 @@ import 'package:state_notifier_test_app/config/app_themes.dart';
 import 'package:state_notifier_test_app/navigation/nav_type.dart';
 import 'package:state_notifier_test_app/ui/page/splash/state/splash_state.dart';
 import 'package:state_notifier_test_app/ui/page/welcome/loading/submit_loading_page.dart';
+import 'package:state_notifier_test_app/ui/page/welcome/signin/email_signin_page.dart';
+import 'package:state_notifier_test_app/ui/page/welcome/signin/state/email_signin_state.dart';
 import 'package:state_notifier_test_app/ui/page/welcome/state/welcome_state.dart';
 
 import 'ui/page/pages.dart';
@@ -30,6 +32,14 @@ class App extends StatelessWidget {
                 child: WelcomePage(),
                 create: (_) => WelcomeStateNotifier(),
               ),
+            );
+          case EmailSignInPage.routeName:
+            return _buildPageRoute(
+              StateNotifierProvider<EmailSignInStateNotifier, EmailSignInState>(
+                child: EmailSignInPage(),
+                create: (_) => EmailSignInStateNotifier(),
+              ),
+              navType: NavType.fade,
             );
           case SubmitLoadingPage.routeName:
             return _buildPageRoute(
