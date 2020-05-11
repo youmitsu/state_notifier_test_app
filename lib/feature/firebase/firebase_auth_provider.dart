@@ -4,8 +4,10 @@ import 'package:flutter/foundation.dart';
 class FirebaseAuthProvider {
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
-  Future<AuthResult> signUpEmail(
-      {@required String email, @required String password}) async {
+  Future<AuthResult> signUpEmail({
+    @required String email,
+    @required String password,
+  }) async {
     try {
       final result = await _auth.createUserWithEmailAndPassword(
         email: email,
@@ -18,5 +20,19 @@ class FirebaseAuthProvider {
     }
   }
 
-  signInEmail() {}
+  Future<AuthResult> signInEmail({
+    @required String email,
+    @required String password,
+  }) async {
+    try {
+      final result = await _auth.signInWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
+      return result;
+    } catch (e) {
+      // TODO: ErrorHandling
+      return e;
+    }
+  }
 }
