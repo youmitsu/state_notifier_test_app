@@ -19,10 +19,21 @@ class EmailSignUpPage extends StatefulWidget {
 class _EmailSignUpPageState extends State<EmailSignUpPage> {
   static const double verticalMargin = 50;
 
+  FocusNode _emailFocus;
+  FocusNode _passwordFocus;
+
+  @override
+  void initState() {
+    super.initState();
+    _emailFocus = FocusNode();
+    _passwordFocus = FocusNode();
+  }
+
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () async {
+        FocusScope.of(context).requestFocus(FocusNode());
         widget.pageController.previousPage(
           duration: const Duration(milliseconds: 300),
           curve: Curves.linear,
@@ -51,6 +62,13 @@ class _EmailSignUpPageState extends State<EmailSignUpPage> {
                   color: Colors.white.withOpacity(0.9),
                 ),
                 child: TextFormField(
+                  autofocus: true,
+                  focusNode: _emailFocus,
+                  textInputAction: TextInputAction.next,
+                  onFieldSubmitted: (_) {
+                    _emailFocus.unfocus();
+                    FocusScope.of(context).requestFocus(_passwordFocus);
+                  },
                   keyboardType: TextInputType.emailAddress,
                   style: Theme.of(context).textTheme.display3.copyWith(
                         color: TextColor.black,
@@ -74,6 +92,11 @@ class _EmailSignUpPageState extends State<EmailSignUpPage> {
                   color: Colors.white.withOpacity(0.9),
                 ),
                 child: TextFormField(
+                  focusNode: _passwordFocus,
+                  textInputAction: TextInputAction.done,
+                  onFieldSubmitted: (_) {
+                    _passwordFocus.unfocus();
+                  },
                   keyboardType: TextInputType.visiblePassword,
                   style: Theme.of(context).textTheme.display3.copyWith(
                         color: TextColor.black,
@@ -126,5 +149,12 @@ class _EmailSignUpPageState extends State<EmailSignUpPage> {
         ),
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _emailFocus.dispose();
+    _passwordFocus.dispose();
   }
 }
