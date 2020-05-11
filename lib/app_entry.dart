@@ -2,13 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_state_notifier/flutter_state_notifier.dart';
 import 'package:state_notifier_test_app/config/app_themes.dart';
 import 'package:state_notifier_test_app/navigation/nav_type.dart';
-import 'package:state_notifier_test_app/ui/page/splash/state/splash_state.dart';
-import 'package:state_notifier_test_app/ui/page/welcome/loading/submit_loading_page.dart';
-import 'package:state_notifier_test_app/ui/page/welcome/signin/email_signin_page.dart';
-import 'package:state_notifier_test_app/ui/page/welcome/signin/state/email_signin_state.dart';
-import 'package:state_notifier_test_app/ui/page/welcome/state/welcome_state.dart';
 
 import 'ui/page/pages.dart';
+import 'ui/page/state.dart';
 
 class App extends StatelessWidget {
   @override
@@ -41,10 +37,13 @@ class App extends StatelessWidget {
               ),
               navType: NavType.fade,
             );
-          case SubmitLoadingPage.routeName:
+          case HomePage.routeName:
             return _buildPageRoute(
-              SubmitLoadingPage(),
-              navType: NavType.fade,
+              StateNotifierProvider<HomeStateNotifier, HomeState>(
+                child: HomePage(),
+                create: (_) => HomeStateNotifier(),
+              ),
+              navType: NavType.unknown,
             );
           default:
             return MaterialPageRoute(

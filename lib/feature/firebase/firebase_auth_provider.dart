@@ -7,8 +7,10 @@ class FirebaseAuthProvider {
   Future<AuthResult> signUpEmail(
       {@required String email, @required String password}) async {
     try {
-      final result = await _auth.signInWithEmailAndPassword(
-          email: email, password: password);
+      final result = await _auth.createUserWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
       return result;
     } catch (e) {
       // TODO: ErrorHandling
