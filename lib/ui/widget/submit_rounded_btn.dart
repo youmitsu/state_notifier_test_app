@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:state_notifier_test_app/config/app_colors.dart';
 
 class SubmitRoundedBtn extends StatelessWidget {
   final String text;
@@ -16,7 +17,7 @@ class SubmitRoundedBtn extends StatelessWidget {
       height: 50,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(30),
-        color: Colors.orange,
+        color: ButtonColor.orange,
       ),
       child: Material(
         color: Colors.transparent,

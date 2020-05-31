@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 
-abstract class AbstractTheme {
+import 'app_colors.dart';
+
+mixin AppTheme {
   ThemeData get lightTheme;
 
   ThemeData get darkTheme;
 }
 
-class BaseTheme extends AbstractTheme {
+class BaseTheme with AppTheme {
   static final commonThemeData = ThemeData(
     textTheme: TextTheme(
       title: TextStyle(
@@ -45,18 +47,53 @@ class BaseTheme extends AbstractTheme {
         fontSize: 10,
       ),
     ),
+    floatingActionButtonTheme: FloatingActionButtonThemeData(
+      backgroundColor: ButtonColor.orange,
+    ),
   );
 
   @override
   ThemeData get darkTheme => commonThemeData.copyWith(
         brightness: Brightness.dark,
-        scaffoldBackgroundColor: Colors.black,
+        appBarTheme: AppBarTheme(
+          brightness: Brightness.dark,
+          color: Colors.transparent,
+          elevation: 0,
+          textTheme: TextTheme(
+            title: TextStyle(
+              fontSize: 18,
+              color: TextColor.white,
+            ),
+          ),
+          iconTheme: IconThemeData(
+            color: ButtonColor.white,
+          ),
+          actionsIconTheme: IconThemeData(
+            color: ButtonColor.white,
+          ),
+        ),
       );
 
   @override
   ThemeData get lightTheme => commonThemeData.copyWith(
         brightness: Brightness.light,
-        scaffoldBackgroundColor: Colors.black,
+        appBarTheme: AppBarTheme(
+          brightness: Brightness.light,
+          color: Colors.transparent,
+          elevation: 0,
+          textTheme: TextTheme(
+            title: TextStyle(
+              fontSize: 18,
+              color: TextColor.black,
+            ),
+          ),
+          iconTheme: IconThemeData(
+            color: ButtonColor.black,
+          ),
+          actionsIconTheme: IconThemeData(
+            color: ButtonColor.black,
+          ),
+        ),
       );
 }
 
@@ -75,5 +112,17 @@ class WelcomeTheme extends BaseTheme {
         appBarTheme: AppBarTheme(
           color: Colors.transparent,
         ),
+      );
+}
+
+class HomeTheme extends BaseTheme {
+  @override
+  ThemeData get darkTheme => super.darkTheme.copyWith(
+        scaffoldBackgroundColor: BackgroundColor.dark,
+      );
+
+  @override
+  ThemeData get lightTheme => super.lightTheme.copyWith(
+        scaffoldBackgroundColor: BackgroundColor.light,
       );
 }

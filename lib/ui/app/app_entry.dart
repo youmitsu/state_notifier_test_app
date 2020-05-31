@@ -13,41 +13,58 @@ class App extends StatelessWidget {
     return StateNotifierProvider<AppStateNotifier, AppState>(
       create: (_) => AppStateNotifier(),
       child: MaterialApp(
-        theme: WelcomeTheme().lightTheme,
-        darkTheme: WelcomeTheme().darkTheme,
         onGenerateRoute: (settings) {
           switch (settings.name) {
             case SplashPage.routeName:
               return _buildPageRoute(
-                StateNotifierProvider<SplashStateNotifier, SplashState>(
+                context,
+                page: StateNotifierProvider<SplashStateNotifier, SplashState>(
                   child: SplashPage(),
                   create: (_) => SplashStateNotifier(),
                 ),
+                theme: BaseTheme(),
                 navType: NavType.fade,
               );
             case WelcomePage.routeName:
               return _buildPageRoute(
-                StateNotifierProvider<WelcomeStateNotifier, WelcomeState>(
+                context,
+                page: StateNotifierProvider<WelcomeStateNotifier, WelcomeState>(
                   child: WelcomePage(),
                   create: (_) => WelcomeStateNotifier(),
                 ),
+                theme: WelcomeTheme(),
               );
             case EmailSignInPage.routeName:
               return _buildPageRoute(
-                StateNotifierProvider<EmailSignInStateNotifier,
+                context,
+                page: StateNotifierProvider<EmailSignInStateNotifier,
                     EmailSignInState>(
                   child: EmailSignInPage(),
                   create: (_) => EmailSignInStateNotifier(),
                 ),
+                theme: WelcomeTheme(),
                 navType: NavType.fade,
               );
             case HomePage.routeName:
               return _buildPageRoute(
-                StateNotifierProvider<HomeStateNotifier, HomeState>(
+                context,
+                page: StateNotifierProvider<HomeStateNotifier, HomeState>(
                   child: HomePage(),
                   create: (_) => HomeStateNotifier(),
                 ),
+                theme: HomeTheme(),
                 navType: NavType.unknown,
+              );
+            case RegisterPage.routeName:
+              return _buildPageRoute(
+                context,
+                page:
+                    StateNotifierProvider<RegisterStateNotifier, RegisterState>(
+                  child: RegisterPage(),
+                  create: (_) => RegisterStateNotifier(),
+                ),
+                theme: HomeTheme(),
+                navType: NavType.slide,
               );
             default:
               return MaterialPageRoute(
@@ -61,7 +78,20 @@ class App extends StatelessWidget {
     );
   }
 
-  Route _buildPageRoute(Widget page, {NavType navType = NavType.unknown}) {
-    return CustomPageRouteBuilder.buildPageRoute(navType, page);
+  Route _buildPageRoute(
+    BuildContext context, {
+    @required Widget page,
+    @required AppTheme theme,
+    NavType navType = NavType.unknown,
+  }) {
+    return CustomPageRouteBuilder.buildPageRoute(
+      navType,
+      Theme(
+        data: Theme.of(context).brightness == Brightness.dark
+            ? theme.darkTheme
+            : theme.lightTheme,
+        child: page,
+      ),
+    );
   }
 }
