@@ -18,10 +18,12 @@ dependencies:
   flutter_state_notifier: ^0.4.0
   provider: ^4.1.0-dev
   get_it:
+  json_serializable:
 
   # Firebase
   firebase_core:
   firebase_auth:
+  cloud_firestore:
 
   # Debug
   logger:
