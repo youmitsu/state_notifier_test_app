@@ -22,5 +22,10 @@ class AccountRepository {
     return result;
   }
 
+  Future<bool> authorized() async {
+    final result = await authProvider.authorized();
+    return result;
+  }
+
   _cacheAuthData(AuthResult authResult) async {}
 }

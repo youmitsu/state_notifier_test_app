@@ -35,4 +35,8 @@ class FirebaseAuthProvider {
       return e;
     }
   }
+
+  Future<bool> authorized() async {
+    return await _auth.currentUser() != null;
+  }
 }
