@@ -21,10 +21,12 @@ class RegisterStateNotifier extends StateNotifier<RegisterState> {
   RegisterStateNotifier()
       : _itemRepository = GetIt.instance.get<ItemRepository>(),
         _accountRepository = GetIt.instance.get<AccountRepository>(),
-        super(const RegisterState()) {
+        super(const RegisterState());
+
+  initState() {
     _accountRepository.currentUser().then((_user) {
       state = state.copyWith(
-        item: Item(uid: _user.uid),
+        item: Item(uid: _user.uid, title: 'hoge', url: 'https://google.com'),
       );
     });
   }
