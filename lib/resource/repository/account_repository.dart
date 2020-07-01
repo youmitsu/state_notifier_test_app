@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get_it/get_it.dart';
+import 'package:state_notifier_test_app/collection/collection.dart';
 import 'package:state_notifier_test_app/feature/firebase.dart';
 
 class AccountRepository {
@@ -25,6 +26,10 @@ class AccountRepository {
   Future<bool> authorized() async {
     final result = await authProvider.authorized();
     return result;
+  }
+
+  Future<User> currentUser() async {
+    return await authProvider.currentUser();
   }
 
   _cacheAuthData(AuthResult authResult) async {}

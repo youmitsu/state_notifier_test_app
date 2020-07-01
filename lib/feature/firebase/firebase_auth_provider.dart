@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
+import 'package:state_notifier_test_app/collection/collection.dart';
 
 class FirebaseAuthProvider {
   final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -38,5 +39,10 @@ class FirebaseAuthProvider {
 
   Future<bool> authorized() async {
     return await _auth.currentUser() != null;
+  }
+
+  Future<User> currentUser() async {
+    final currentUser = await _auth.currentUser();
+    return User.fromDto(currentUser);
   }
 }

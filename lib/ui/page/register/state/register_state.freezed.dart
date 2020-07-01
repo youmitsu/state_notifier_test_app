@@ -33,8 +33,6 @@ abstract class $RegisterStateCopyWith<$Res> {
           RegisterState value, $Res Function(RegisterState) then) =
       _$RegisterStateCopyWithImpl<$Res>;
   $Res call({Item item});
-
-  $ItemCopyWith<$Res> get item;
 }
 
 class _$RegisterStateCopyWithImpl<$Res>
@@ -53,16 +51,6 @@ class _$RegisterStateCopyWithImpl<$Res>
       item: item == freezed ? _value.item : item as Item,
     ));
   }
-
-  @override
-  $ItemCopyWith<$Res> get item {
-    if (_value.item == null) {
-      return null;
-    }
-    return $ItemCopyWith<$Res>(_value.item, (value) {
-      return _then(_value.copyWith(item: value));
-    });
-  }
 }
 
 abstract class _$RegisterStateCopyWith<$Res>
@@ -72,9 +60,6 @@ abstract class _$RegisterStateCopyWith<$Res>
       __$RegisterStateCopyWithImpl<$Res>;
   @override
   $Res call({Item item});
-
-  @override
-  $ItemCopyWith<$Res> get item;
 }
 
 class __$RegisterStateCopyWithImpl<$Res>

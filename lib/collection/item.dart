@@ -1,14 +1,20 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'item.freezed.dart';
 part 'item.g.dart';
 
-@freezed
-abstract class Item with _$Item {
-  factory Item({
-    @Default('') String title,
-    @Default('') String url,
-  }) = _Item;
+@JsonSerializable()
+class Item {
+  final String title;
+  final String url;
+  final String uid;
+
+  Item({
+    this.uid,
+    this.title = '',
+    this.url = '',
+  });
 
   factory Item.fromJson(Map<String, dynamic> json) => _$ItemFromJson(json);
+
+  Map<String, dynamic> toJson() => _$ItemToJson(this);
 }

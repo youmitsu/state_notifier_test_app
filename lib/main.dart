@@ -14,5 +14,7 @@ void setupLocator() {
   final getIt = GetIt.instance;
   getIt
     ..registerSingleton<FirebaseAuthProvider>(FirebaseAuthProvider())
-    ..registerSingleton<AccountRepository>(AccountRepository());
+    ..registerSingleton<FireStoreProvider>(FireStoreProvider())
+    ..registerSingleton<AccountRepository>(AccountRepository())
+    ..registerSingleton<ItemRepository>(ItemRepository());
 }
