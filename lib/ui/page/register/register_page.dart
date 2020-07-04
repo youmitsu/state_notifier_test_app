@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:state_notifier_test_app/config/app_colors.dart';
 import 'package:provider/provider.dart';
+import 'package:state_notifier_test_app/config/app_colors.dart';
 import 'package:state_notifier_test_app/ui/page/register/state/register_state.dart';
 
 class RegisterPage extends StatefulWidget {
@@ -11,6 +11,8 @@ class RegisterPage extends StatefulWidget {
 }
 
 class _RegisterPageState extends State<RegisterPage> {
+  final _formKey = GlobalKey<FormState>();
+
   @override
   void initState() {
     super.initState();
@@ -26,6 +28,53 @@ class _RegisterPageState extends State<RegisterPage> {
       body: Container(
         child: Stack(
           children: <Widget>[
+            Positioned(
+              left: 0,
+              right: 0,
+              top: 0,
+              child: Container(
+                margin: const EdgeInsets.symmetric(horizontal: 14.0),
+                alignment: Alignment.center,
+                child: Form(
+                  key: _formKey,
+                  autovalidate: true,
+                  onChanged: () {
+                    Form.of(context).save();
+                  },
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: <Widget>[
+                      TextFormField(
+                        style: Theme.of(context).textTheme.display3,
+                        decoration: const InputDecoration(
+                          hintText: 'カバン',
+                          labelText: '名前',
+                        ),
+                        validator: (value) {
+                          if (value.isEmpty) {
+                            return 'Please';
+                          }
+                          return null;
+                        },
+                      ),
+                      TextFormField(
+                        style: Theme.of(context).textTheme.display3,
+                        decoration: const InputDecoration(
+                          hintText: 'https://amazon.com/1234',
+                          labelText: 'URL',
+                        ),
+                        validator: (value) {
+                          if (value.isEmpty) {
+                            return 'Please';
+                          }
+                          return null;
+                        },
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
             Positioned(
               bottom: 0,
               left: 0,
