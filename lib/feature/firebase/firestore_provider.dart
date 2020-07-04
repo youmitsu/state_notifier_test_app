@@ -3,8 +3,10 @@ import 'package:state_notifier_test_app/collection/collection.dart';
 
 class FireStoreProvider {
   Future<Item> setItem(Item entity) async {
-    final json = entity.toJson();
-    await Firestore.instance.collection('items').add(json);
+    await Firestore.instance
+        .collection('items')
+        .document(entity.uid)
+        .setData(entity.toJson());
     return entity;
   }
 }

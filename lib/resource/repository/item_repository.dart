@@ -8,7 +8,7 @@ class ItemRepository {
   ItemRepository()
       : this._fireStoreProvider = GetIt.instance.get<FireStoreProvider>();
 
-  Future<Item> postItem({Item item}) async {
+  Future<Item> postItem({String uid, Item item}) async {
     return await _fireStoreProvider.setItem(item);
   }
 }

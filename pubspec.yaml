@@ -14,11 +14,12 @@ dependencies:
 
   # Architecture
   freezed_annotation:
-  state_notifier: ^0.4.0
-  flutter_state_notifier: ^0.4.0
-  provider: ^4.1.0-dev
+  state_notifier:
+  flutter_state_notifier:
+  provider:
   get_it:
   json_serializable:
+  hooks_riverpod:
 
   # Firebase
   firebase_core:
