@@ -6,7 +6,8 @@ class FireStoreProvider {
     await Firestore.instance
         .collection('items')
         .document(entity.uid)
-        .setData(entity.toJson());
+        .collection('data')
+        .add(entity.toJson());
     return entity;
   }
 }

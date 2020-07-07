@@ -48,10 +48,7 @@ class App extends StatelessWidget {
             case HomePage.routeName:
               return _buildPageRoute(
                 context,
-                page: StateNotifierProvider<HomeStateNotifier, HomeState>(
-                  child: HomePage(),
-                  create: (_) => HomeStateNotifier(),
-                ),
+                page: HomePage(),
                 theme: HomeTheme(),
                 navType: NavType.unknown,
               );

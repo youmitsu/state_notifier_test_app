@@ -20,6 +20,7 @@ dependencies:
   get_it:
   json_serializable:
   hooks_riverpod:
+  flutter_hooks:
 
   # Firebase
   firebase_core:

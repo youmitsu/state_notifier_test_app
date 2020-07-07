@@ -26,12 +26,12 @@ class RegisterStateNotifier extends StateNotifier<RegisterState> {
   initState() {
     _accountRepository.currentUser().then((_user) {
       state = state.copyWith(
-        item: Item(uid: _user.uid, title: 'hoge', url: 'https://google.com'),
+        item: Item(uid: _user.uid, title: 'fuga', url: 'https://google.com'),
       );
     });
   }
 
   Future<void> register() async {
-    final item = await _itemRepository.postItem(item: state.item);
+    final item = await _itemRepository.addItem(item: state.item);
   }
 }
