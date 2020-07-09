@@ -1,3 +1,4 @@
+import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_state_notifier/flutter_state_notifier.dart';
 import 'package:state_notifier_test_app/config/app_themes.dart';
@@ -13,6 +14,8 @@ class App extends StatelessWidget {
     return StateNotifierProvider<AppStateNotifier, AppState>(
       create: (_) => AppStateNotifier(),
       child: MaterialApp(
+        builder: BotToastInit(),
+        navigatorObservers: [BotToastNavigatorObserver()],
         onGenerateRoute: (settings) {
           switch (settings.name) {
             case SplashPage.routeName:

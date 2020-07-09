@@ -10,7 +10,8 @@ dependencies:
     sdk: flutter
   # UI
   lottie:
-  cupertino_icons: ^0.1.2
+  cupertino_icons:
+  bot_toast:
 
   # Architecture
   freezed_annotation:

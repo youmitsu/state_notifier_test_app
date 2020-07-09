@@ -1,3 +1,4 @@
+import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/foundation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:get_it/get_it.dart';
@@ -10,7 +11,9 @@ part 'register_state.freezed.dart';
 @freezed
 abstract class RegisterState with _$RegisterState {
   const factory RegisterState({
-    Item item,
+    String uid,
+    String name,
+    String url,
   }) = _RegisterState;
 }
 
@@ -26,12 +29,31 @@ class RegisterStateNotifier extends StateNotifier<RegisterState> {
   initState() {
     _accountRepository.currentUser().then((_user) {
       state = state.copyWith(
-        item: Item(uid: _user.uid, title: 'fuga', url: 'https://google.com'),
+        uid: _user.uid,
       );
     });
   }
 
-  Future<void> register() async {
-    final item = await _itemRepository.addItem(item: state.item);
+  Future<Item> register() async {
+    final item = await _itemRepository.addItem(
+        item: Item(
+      uid: state.uid,
+      title: state.name,
+      url: state.url,
+    ));
+    BotToast.showText(text: '欲しいものを追加しました');
+    return item;
+  }
+
+  void setName(String value) {
+    state = state.copyWith(
+      name: value,
+    );
+  }
+
+  void setUrl(String value) {
+    state = state.copyWith(
+      url: value,
+    );
   }
 }

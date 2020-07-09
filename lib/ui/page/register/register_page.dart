@@ -4,7 +4,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:state_notifier_test_app/config/app_colors.dart';
 import 'package:state_notifier_test_app/ui/page/register/state/register_state.dart';
 
-final stateNotifier =
+final registerStateNotifier =
     StateNotifierProvider<RegisterStateNotifier, RegisterState>(
   (ref) => RegisterStateNotifier(),
 );
@@ -14,7 +14,7 @@ class RegisterPage extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    useProvider(stateNotifier).initState();
+    useProvider(registerStateNotifier).initState();
     return Scaffold(
       appBar: AppBar(
         title: Text('欲しいものを追加'),
@@ -56,9 +56,13 @@ class _RegisterBody extends HookWidget {
                       ),
                       validator: (value) {
                         if (value.isEmpty) {
-                          return 'Please';
+                          return '名前を入力してください';
                         }
                         return null;
+                      },
+                      autovalidate: true,
+                      onChanged: (value) {
+                        registerStateNotifier.read(context).setName(value);
                       },
                     ),
                     TextFormField(
@@ -69,9 +73,13 @@ class _RegisterBody extends HookWidget {
                       ),
                       validator: (value) {
                         if (value.isEmpty) {
-                          return 'Please';
+                          return 'URLを入力してください';
                         }
                         return null;
+                      },
+                      autovalidate: true,
+                      onChanged: (value) {
+                        registerStateNotifier.read(context).setUrl(value);
                       },
                     ),
                   ],
@@ -96,7 +104,9 @@ class _RegisterBtn extends HookWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        stateNotifier.read(context).register();
+        if (Form.of(context).validate()) {
+          registerStateNotifier.read(context).register();
+        }
       },
       child: Container(
         height: 50,

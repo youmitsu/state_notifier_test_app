@@ -9,9 +9,9 @@ class Item {
   final String uid;
 
   Item({
-    this.uid,
-    this.title = '',
-    this.url = '',
+    @required this.uid,
+    this.title,
+    this.url,
   });
 
   factory Item.fromJson(Map<String, dynamic> json) => _$ItemFromJson(json);

@@ -12,9 +12,11 @@ T _$identity<T>(T value) => value;
 class _$RegisterStateTearOff {
   const _$RegisterStateTearOff();
 
-  _RegisterState call({Item item}) {
+  _RegisterState call({String uid, String name, String url}) {
     return _RegisterState(
-      item: item,
+      uid: uid,
+      name: name,
+      url: url,
     );
   }
 }
@@ -23,7 +25,9 @@ class _$RegisterStateTearOff {
 const $RegisterState = _$RegisterStateTearOff();
 
 mixin _$RegisterState {
-  Item get item;
+  String get uid;
+  String get name;
+  String get url;
 
   $RegisterStateCopyWith<RegisterState> get copyWith;
 }
@@ -32,7 +36,7 @@ abstract class $RegisterStateCopyWith<$Res> {
   factory $RegisterStateCopyWith(
           RegisterState value, $Res Function(RegisterState) then) =
       _$RegisterStateCopyWithImpl<$Res>;
-  $Res call({Item item});
+  $Res call({String uid, String name, String url});
 }
 
 class _$RegisterStateCopyWithImpl<$Res>
@@ -45,10 +49,14 @@ class _$RegisterStateCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object item = freezed,
+    Object uid = freezed,
+    Object name = freezed,
+    Object url = freezed,
   }) {
     return _then(_value.copyWith(
-      item: item == freezed ? _value.item : item as Item,
+      uid: uid == freezed ? _value.uid : uid as String,
+      name: name == freezed ? _value.name : name as String,
+      url: url == freezed ? _value.url : url as String,
     ));
   }
 }
@@ -59,7 +67,7 @@ abstract class _$RegisterStateCopyWith<$Res>
           _RegisterState value, $Res Function(_RegisterState) then) =
       __$RegisterStateCopyWithImpl<$Res>;
   @override
-  $Res call({Item item});
+  $Res call({String uid, String name, String url});
 }
 
 class __$RegisterStateCopyWithImpl<$Res>
@@ -74,23 +82,31 @@ class __$RegisterStateCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object item = freezed,
+    Object uid = freezed,
+    Object name = freezed,
+    Object url = freezed,
   }) {
     return _then(_RegisterState(
-      item: item == freezed ? _value.item : item as Item,
+      uid: uid == freezed ? _value.uid : uid as String,
+      name: name == freezed ? _value.name : name as String,
+      url: url == freezed ? _value.url : url as String,
     ));
   }
 }
 
 class _$_RegisterState with DiagnosticableTreeMixin implements _RegisterState {
-  const _$_RegisterState({this.item});
+  const _$_RegisterState({this.uid, this.name, this.url});
 
   @override
-  final Item item;
+  final String uid;
+  @override
+  final String name;
+  @override
+  final String url;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'RegisterState(item: $item)';
+    return 'RegisterState(uid: $uid, name: $name, url: $url)';
   }
 
   @override
@@ -98,20 +114,29 @@ class _$_RegisterState with DiagnosticableTreeMixin implements _RegisterState {
     super.debugFillProperties(properties);
     properties
       ..add(DiagnosticsProperty('type', 'RegisterState'))
-      ..add(DiagnosticsProperty('item', item));
+      ..add(DiagnosticsProperty('uid', uid))
+      ..add(DiagnosticsProperty('name', name))
+      ..add(DiagnosticsProperty('url', url));
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is _RegisterState &&
-            (identical(other.item, item) ||
-                const DeepCollectionEquality().equals(other.item, item)));
+            (identical(other.uid, uid) ||
+                const DeepCollectionEquality().equals(other.uid, uid)) &&
+            (identical(other.name, name) ||
+                const DeepCollectionEquality().equals(other.name, name)) &&
+            (identical(other.url, url) ||
+                const DeepCollectionEquality().equals(other.url, url)));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(item);
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(uid) ^
+      const DeepCollectionEquality().hash(name) ^
+      const DeepCollectionEquality().hash(url);
 
   @override
   _$RegisterStateCopyWith<_RegisterState> get copyWith =>
@@ -119,10 +144,15 @@ class _$_RegisterState with DiagnosticableTreeMixin implements _RegisterState {
 }
 
 abstract class _RegisterState implements RegisterState {
-  const factory _RegisterState({Item item}) = _$_RegisterState;
+  const factory _RegisterState({String uid, String name, String url}) =
+      _$_RegisterState;
 
   @override
-  Item get item;
+  String get uid;
+  @override
+  String get name;
+  @override
+  String get url;
   @override
   _$RegisterStateCopyWith<_RegisterState> get copyWith;
 }
