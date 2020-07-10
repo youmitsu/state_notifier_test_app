@@ -1,20 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:provider/provider.dart';
 import 'package:state_notifier_test_app/config/app_colors.dart';
-import 'package:state_notifier_test_app/ui/page/register/state/register_state.dart';
+import 'package:state_notifier_test_app/ui/widget/widget.dart';
 
-final registerStateNotifier =
-    StateNotifierProvider<RegisterStateNotifier, RegisterState>(
-  (ref) => RegisterStateNotifier(),
-);
+import '../state.dart';
 
-class RegisterPage extends HookWidget {
+class RegisterPage extends StatefulWidget {
   static const String routeName = '/register';
 
   @override
+  State<StatefulWidget> createState() => _RegisterPageState();
+}
+
+class _RegisterPageState extends State<RegisterPage> {
+  @override
   Widget build(BuildContext context) {
-    useProvider(registerStateNotifier).initState();
+    context.read<RegisterStateNotifier>().initState();
     return Scaffold(
       appBar: AppBar(
         title: Text('欲しいものを追加'),
@@ -25,7 +28,10 @@ class RegisterPage extends HookWidget {
 }
 
 class _RegisterBody extends HookWidget {
-  final _formKey = GlobalKey<FormState>();
+  static const titleFormAttr = 'title';
+  static const urlFormAttr = 'url';
+
+  final _formKey = GlobalKey<FormBuilderState>();
 
   @override
   Widget build(BuildContext context) {
@@ -39,47 +45,46 @@ class _RegisterBody extends HookWidget {
             child: Container(
               margin: const EdgeInsets.symmetric(horizontal: 14.0),
               alignment: Alignment.center,
-              child: Form(
+              child: FormBuilder(
                 key: _formKey,
-                autovalidate: true,
-                onChanged: () {
-                  Form.of(context).save();
+                initialValue: {
+                  titleFormAttr: '',
+                  urlFormAttr: '',
                 },
+                autovalidate: true,
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: <Widget>[
-                    TextFormField(
+                    FormBuilderTextField(
+                      attribute: titleFormAttr,
                       style: Theme.of(context).textTheme.display3,
                       decoration: const InputDecoration(
                         hintText: 'カバン',
                         labelText: '名前',
                       ),
-                      validator: (value) {
-                        if (value.isEmpty) {
-                          return '名前を入力してください';
-                        }
-                        return null;
-                      },
+                      validators: [
+                        FormBuilderValidators.required(errorText: '入力してください'),
+                      ],
                       autovalidate: true,
                       onChanged: (value) {
-                        registerStateNotifier.read(context).setName(value);
+                        context.read<RegisterStateNotifier>().setName(value);
                       },
+                      maxLines: 1,
                     ),
-                    TextFormField(
+                    FormBuilderTextField(
+                      attribute: urlFormAttr,
                       style: Theme.of(context).textTheme.display3,
                       decoration: const InputDecoration(
                         hintText: 'https://amazon.com/1234',
                         labelText: 'URL',
                       ),
-                      validator: (value) {
-                        if (value.isEmpty) {
-                          return 'URLを入力してください';
-                        }
-                        return null;
-                      },
+                      validators: [
+                        FormBuilderValidators.url(
+                            errorText: 'メールアドレスの形式で入力してください'),
+                      ],
                       autovalidate: true,
                       onChanged: (value) {
-                        registerStateNotifier.read(context).setUrl(value);
+                        context.read<RegisterStateNotifier>().setUrl(value);
                       },
                     ),
                   ],
@@ -91,7 +96,18 @@ class _RegisterBody extends HookWidget {
             bottom: 0,
             left: 0,
             right: 0,
-            child: _RegisterBtn(),
+            child: _RegisterBtn(
+              onPressed: () {
+                if (_formKey.currentState.saveAndValidate()) {
+                  context.read<RegisterStateNotifier>().register();
+                }
+              },
+            ),
+          ),
+          Positioned.fill(
+            child: context.watch<RegisterState>().isLoading
+                ? CommonLoadingWidget()
+                : Container(),
           ),
         ],
       ),
@@ -100,24 +116,36 @@ class _RegisterBody extends HookWidget {
 }
 
 class _RegisterBtn extends HookWidget {
+  final VoidCallback onPressed;
+
+  _RegisterBtn({this.onPressed});
+
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: () {
-        if (Form.of(context).validate()) {
-          registerStateNotifier.read(context).register();
-        }
-      },
-      child: Container(
-        height: 50,
-        color: ButtonColor.orange,
-        alignment: Alignment.center,
-        child: Text(
-          '追加する',
-          style: Theme.of(context).textTheme.display3.copyWith(
-                color: Colors.white,
-                fontWeight: FontWeight.bold,
-              ),
+    return Container(
+      height: 50,
+      width: double.infinity,
+      color: ButtonColor.orange,
+      alignment: Alignment.center,
+      child: Material(
+        color: Colors.transparent,
+        child: InkWell(
+          onTap: () {
+            onPressed();
+          },
+          child: Container(
+            alignment: Alignment.center,
+            height: 50,
+            width: double.infinity,
+            child: Text(
+              '追加する',
+              style: Theme.of(context).textTheme.display3.copyWith(
+                    backgroundColor: Colors.transparent,
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                  ),
+            ),
+          ),
         ),
       ),
     );

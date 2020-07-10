@@ -14,6 +14,7 @@ abstract class RegisterState with _$RegisterState {
     String uid,
     String name,
     String url,
+    @Default(false) bool isLoading,
   }) = _RegisterState;
 }
 
@@ -35,14 +36,26 @@ class RegisterStateNotifier extends StateNotifier<RegisterState> {
   }
 
   Future<Item> register() async {
-    final item = await _itemRepository.addItem(
-        item: Item(
-      uid: state.uid,
-      title: state.name,
-      url: state.url,
-    ));
-    BotToast.showText(text: '欲しいものを追加しました');
-    return item;
+    state = state.copyWith(
+      isLoading: true,
+    );
+    Item result;
+    try {
+      result = await _itemRepository.addItem(
+          item: Item(
+        uid: state.uid,
+        title: state.name,
+        url: state.url,
+      ));
+      BotToast.showText(text: '欲しいものを追加しました');
+    } catch (e) {
+      // error-handling
+    } finally {
+      state = state.copyWith(
+        isLoading: true,
+      );
+    }
+    return result;
   }
 
   void setName(String value) {

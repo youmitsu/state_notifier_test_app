@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 import 'package:state_notifier_test_app/config/app_colors.dart';
 import 'package:state_notifier_test_app/ui/widget/widget.dart';
@@ -116,13 +115,7 @@ class _EmailSignInPageState extends State<EmailSignInPage> {
           Visibility(
             visible: context.watch<EmailSignInState>().isLoading,
             child: Positioned.fill(
-              child: Container(
-                color: Colors.black.withOpacity(0.7),
-                child: Padding(
-                  padding: const EdgeInsets.all(120),
-                  child: Lottie.asset('lottie/loading.json'),
-                ),
-              ),
+              child: CommonLoadingWidget(),
             ),
           ),
         ],

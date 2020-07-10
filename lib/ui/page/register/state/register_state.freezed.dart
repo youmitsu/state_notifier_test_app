@@ -12,11 +12,13 @@ T _$identity<T>(T value) => value;
 class _$RegisterStateTearOff {
   const _$RegisterStateTearOff();
 
-  _RegisterState call({String uid, String name, String url}) {
+  _RegisterState call(
+      {String uid, String name, String url, bool isLoading = false}) {
     return _RegisterState(
       uid: uid,
       name: name,
       url: url,
+      isLoading: isLoading,
     );
   }
 }
@@ -28,6 +30,7 @@ mixin _$RegisterState {
   String get uid;
   String get name;
   String get url;
+  bool get isLoading;
 
   $RegisterStateCopyWith<RegisterState> get copyWith;
 }
@@ -36,7 +39,7 @@ abstract class $RegisterStateCopyWith<$Res> {
   factory $RegisterStateCopyWith(
           RegisterState value, $Res Function(RegisterState) then) =
       _$RegisterStateCopyWithImpl<$Res>;
-  $Res call({String uid, String name, String url});
+  $Res call({String uid, String name, String url, bool isLoading});
 }
 
 class _$RegisterStateCopyWithImpl<$Res>
@@ -52,11 +55,13 @@ class _$RegisterStateCopyWithImpl<$Res>
     Object uid = freezed,
     Object name = freezed,
     Object url = freezed,
+    Object isLoading = freezed,
   }) {
     return _then(_value.copyWith(
       uid: uid == freezed ? _value.uid : uid as String,
       name: name == freezed ? _value.name : name as String,
       url: url == freezed ? _value.url : url as String,
+      isLoading: isLoading == freezed ? _value.isLoading : isLoading as bool,
     ));
   }
 }
@@ -67,7 +72,7 @@ abstract class _$RegisterStateCopyWith<$Res>
           _RegisterState value, $Res Function(_RegisterState) then) =
       __$RegisterStateCopyWithImpl<$Res>;
   @override
-  $Res call({String uid, String name, String url});
+  $Res call({String uid, String name, String url, bool isLoading});
 }
 
 class __$RegisterStateCopyWithImpl<$Res>
@@ -85,17 +90,21 @@ class __$RegisterStateCopyWithImpl<$Res>
     Object uid = freezed,
     Object name = freezed,
     Object url = freezed,
+    Object isLoading = freezed,
   }) {
     return _then(_RegisterState(
       uid: uid == freezed ? _value.uid : uid as String,
       name: name == freezed ? _value.name : name as String,
       url: url == freezed ? _value.url : url as String,
+      isLoading: isLoading == freezed ? _value.isLoading : isLoading as bool,
     ));
   }
 }
 
 class _$_RegisterState with DiagnosticableTreeMixin implements _RegisterState {
-  const _$_RegisterState({this.uid, this.name, this.url});
+  const _$_RegisterState(
+      {this.uid, this.name, this.url, this.isLoading = false})
+      : assert(isLoading != null);
 
   @override
   final String uid;
@@ -103,10 +112,13 @@ class _$_RegisterState with DiagnosticableTreeMixin implements _RegisterState {
   final String name;
   @override
   final String url;
+  @JsonKey(defaultValue: false)
+  @override
+  final bool isLoading;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'RegisterState(uid: $uid, name: $name, url: $url)';
+    return 'RegisterState(uid: $uid, name: $name, url: $url, isLoading: $isLoading)';
   }
 
   @override
@@ -116,7 +128,8 @@ class _$_RegisterState with DiagnosticableTreeMixin implements _RegisterState {
       ..add(DiagnosticsProperty('type', 'RegisterState'))
       ..add(DiagnosticsProperty('uid', uid))
       ..add(DiagnosticsProperty('name', name))
-      ..add(DiagnosticsProperty('url', url));
+      ..add(DiagnosticsProperty('url', url))
+      ..add(DiagnosticsProperty('isLoading', isLoading));
   }
 
   @override
@@ -128,7 +141,10 @@ class _$_RegisterState with DiagnosticableTreeMixin implements _RegisterState {
             (identical(other.name, name) ||
                 const DeepCollectionEquality().equals(other.name, name)) &&
             (identical(other.url, url) ||
-                const DeepCollectionEquality().equals(other.url, url)));
+                const DeepCollectionEquality().equals(other.url, url)) &&
+            (identical(other.isLoading, isLoading) ||
+                const DeepCollectionEquality()
+                    .equals(other.isLoading, isLoading)));
   }
 
   @override
@@ -136,7 +152,8 @@ class _$_RegisterState with DiagnosticableTreeMixin implements _RegisterState {
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(uid) ^
       const DeepCollectionEquality().hash(name) ^
-      const DeepCollectionEquality().hash(url);
+      const DeepCollectionEquality().hash(url) ^
+      const DeepCollectionEquality().hash(isLoading);
 
   @override
   _$RegisterStateCopyWith<_RegisterState> get copyWith =>
@@ -144,8 +161,8 @@ class _$_RegisterState with DiagnosticableTreeMixin implements _RegisterState {
 }
 
 abstract class _RegisterState implements RegisterState {
-  const factory _RegisterState({String uid, String name, String url}) =
-      _$_RegisterState;
+  const factory _RegisterState(
+      {String uid, String name, String url, bool isLoading}) = _$_RegisterState;
 
   @override
   String get uid;
@@ -153,6 +170,8 @@ abstract class _RegisterState implements RegisterState {
   String get name;
   @override
   String get url;
+  @override
+  bool get isLoading;
   @override
   _$RegisterStateCopyWith<_RegisterState> get copyWith;
 }

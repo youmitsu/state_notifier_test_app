@@ -12,6 +12,7 @@ dependencies:
   lottie:
   cupertino_icons:
   bot_toast:
+  flutter_form_builder:
 
   # Architecture
   freezed_annotation:
