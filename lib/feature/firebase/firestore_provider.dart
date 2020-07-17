@@ -10,4 +10,12 @@ class FireStoreProvider {
         .add(entity.toJson());
     return entity;
   }
+
+  Stream<QuerySnapshot> fetchItems(String uid) {
+    return Firestore.instance
+        .collection('items')
+        .document(uid)
+        .collection('data')
+        .snapshots();
+  }
 }
