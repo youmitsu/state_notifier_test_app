@@ -27,4 +27,6 @@ class SplashStateNotifier extends StateNotifier<SplashState> with LocatorMixin {
       Navigator.of(context).pushReplacementNamed(WelcomePage.routeName);
     }
   }
+
+  authenticate() {}
 }

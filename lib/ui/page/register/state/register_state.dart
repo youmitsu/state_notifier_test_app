@@ -52,7 +52,7 @@ class RegisterStateNotifier extends StateNotifier<RegisterState> {
       // error-handling
     } finally {
       state = state.copyWith(
-        isLoading: true,
+        isLoading: false,
       );
     }
     return result;
