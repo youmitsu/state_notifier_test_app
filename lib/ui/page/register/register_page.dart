@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:provider/provider.dart';
 import 'package:state_notifier_test_app/config/app_colors.dart';
 import 'package:state_notifier_test_app/ui/widget/widget.dart';
@@ -27,7 +26,7 @@ class _RegisterPageState extends State<RegisterPage> {
   }
 }
 
-class _RegisterBody extends HookWidget {
+class _RegisterBody extends StatelessWidget {
   static const titleFormAttr = 'title';
   static const urlFormAttr = 'url';
 
@@ -115,7 +114,7 @@ class _RegisterBody extends HookWidget {
   }
 }
 
-class _RegisterBtn extends HookWidget {
+class _RegisterBtn extends StatelessWidget {
   final VoidCallback onPressed;
 
   _RegisterBtn({this.onPressed});

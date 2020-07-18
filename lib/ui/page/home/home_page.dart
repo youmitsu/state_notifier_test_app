@@ -1,6 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:logger/logger.dart';
 import 'package:provider/provider.dart';
 import 'package:state_notifier_test_app/collection/collection.dart';
 import 'package:state_notifier_test_app/ui/page/pages.dart';
@@ -53,9 +52,13 @@ class HomeBody extends StatelessWidget {
               .collection('items')
               .document(uid)
               .collection('data')
+              .orderBy("createdAt", descending: true)
               .snapshots(),
           builder: (context, snapshot) {
-            Logger()..d(snapshot.data.documents.first.data);
+            if (!snapshot.hasData)
+              return Center(
+                child: Text('欲しいものを追加しよう'),
+              );
             return ListView.builder(
               itemCount: snapshot.data.documents.length,
               itemBuilder: (context, index) {
@@ -86,6 +89,7 @@ class ItemCard extends StatelessWidget {
           children: <Widget>[
             Text(item.title),
             Text(item.url ?? ''),
+            Text(item.createdAt.toString()),
           ],
         ),
       ),

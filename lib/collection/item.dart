@@ -7,11 +7,13 @@ class Item {
   final String title;
   final String url;
   final String uid;
+  final DateTime createdAt;
 
   Item({
     @required this.uid,
     this.title,
     this.url,
+    this.createdAt,
   });
 
   factory Item.fromJson(Map<String, dynamic> json) => _$ItemFromJson(json);

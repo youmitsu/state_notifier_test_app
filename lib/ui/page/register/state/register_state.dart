@@ -46,6 +46,7 @@ class RegisterStateNotifier extends StateNotifier<RegisterState> {
         uid: state.uid,
         title: state.name,
         url: state.url,
+        createdAt: DateTime.now(),
       ));
       BotToast.showText(text: '欲しいものを追加しました');
     } catch (e) {
