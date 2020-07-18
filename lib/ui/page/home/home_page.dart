@@ -81,16 +81,25 @@ class ItemCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      child: Container(
-        height: 150,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisSize: MainAxisSize.min,
-          children: <Widget>[
-            Text(item.title),
-            Text(item.url ?? ''),
-            Text(item.createdAt.toString()),
-          ],
+      child: Material(
+        color: Colors.transparent,
+        child: InkWell(
+          borderRadius: BorderRadius.circular(4),
+          onTap: () {
+            // no-op
+          },
+          child: Container(
+            height: 150,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
+              children: <Widget>[
+                Text(item.title),
+                Text(item.url ?? ''),
+                Text(item.createdAt.toString()),
+              ],
+            ),
+          ),
         ),
       ),
     );
