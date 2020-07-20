@@ -20,6 +20,8 @@ class AppStateNotifier extends StateNotifier<AppState> {
 
   authenticate() async {
     final user = await _firebaseAuthProvider.currentUser();
-    state = state.copyWith(uid: user.uid);
+    if (user != null) {
+      state = state.copyWith(uid: user.uid);
+    }
   }
 }

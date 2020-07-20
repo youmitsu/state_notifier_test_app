@@ -66,6 +66,16 @@ class App extends StatelessWidget {
                 theme: HomeTheme(),
                 navType: NavType.slide,
               );
+            case SettingPage.routeName:
+              return _buildPageRoute(
+                context,
+                page: StateNotifierProvider<SettingStateNotifier, SettingState>(
+                  child: SettingPage(),
+                  create: (_) => SettingStateNotifier(),
+                ),
+                theme: HomeTheme(),
+                navType: NavType.fade,
+              );
             default:
               return MaterialPageRoute(
                 builder: (_) => Center(

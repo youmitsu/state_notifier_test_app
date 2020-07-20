@@ -24,7 +24,9 @@ class _HomePageState extends State<HomePage> {
               Icons.settings,
             ),
             tooltip: '設定',
-            onPressed: () {},
+            onPressed: () {
+              Navigator.of(context).pushNamed(SettingPage.routeName);
+            },
           ),
         ],
       ),

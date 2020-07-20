@@ -45,4 +45,9 @@ class FirebaseAuthProvider {
     final currentUser = await _auth.currentUser();
     return User.fromDto(currentUser);
   }
+
+  Future<bool> logout() async {
+    await _auth.signOut();
+    return true;
+  }
 }

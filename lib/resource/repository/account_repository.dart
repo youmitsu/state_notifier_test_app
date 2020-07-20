@@ -32,5 +32,9 @@ class AccountRepository {
     return await authProvider.currentUser();
   }
 
+  Future<bool> logout() async {
+    return await authProvider.logout();
+  }
+
   _cacheAuthData(AuthResult authResult) async {}
 }
