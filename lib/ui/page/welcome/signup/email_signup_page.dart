@@ -18,8 +18,6 @@ class EmailSignUpPage extends StatefulWidget {
 }
 
 class _EmailSignUpPageState extends State<EmailSignUpPage> {
-  static const double verticalMargin = 50;
-
   FocusNode _emailFocus;
   FocusNode _passwordFocus;
 
@@ -51,6 +49,7 @@ class _EmailSignUpPageState extends State<EmailSignUpPage> {
         body: Stack(
           children: <Widget>[
             Container(
+              alignment: Alignment.topCenter,
               padding: const EdgeInsets.symmetric(vertical: 30),
               child: Column(
                 children: <Widget>[
@@ -127,30 +126,30 @@ class _EmailSignUpPageState extends State<EmailSignUpPage> {
                   const SizedBox(
                     height: 30,
                   ),
-                  Container(
-                    alignment: Alignment.center,
-                    child: RichText(
-                      text: TextSpan(
-                        children: [
-                          TextSpan(
-                            text: ' 利用規約 ',
-                            style:
-                                Theme.of(context).textTheme.display4.copyWith(
-                                      color: Colors.white,
-                                      decoration: TextDecoration.underline,
-                                    ),
-                          ),
-                          TextSpan(
-                            text: 'に同意の上、ご利用ください',
-                            style:
-                                Theme.of(context).textTheme.display4.copyWith(
-                                      color: Colors.white,
-                                    ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
+//                  Container(
+//                    alignment: Alignment.center,
+//                    child: RichText(
+//                      text: TextSpan(
+//                        children: [
+//                          TextSpan(
+//                            text: ' 利用規約 ',
+//                            style:
+//                                Theme.of(context).textTheme.display4.copyWith(
+//                                      color: Colors.white,
+//                                      decoration: TextDecoration.underline,
+//                                    ),
+//                          ),
+//                          TextSpan(
+//                            text: 'に同意の上、ご利用ください',
+//                            style:
+//                                Theme.of(context).textTheme.display4.copyWith(
+//                                      color: Colors.white,
+//                                    ),
+//                          ),
+//                        ],
+//                      ),
+//                    ),
+//                  ),
                 ],
               ),
             ),

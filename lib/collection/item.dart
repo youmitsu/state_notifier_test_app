@@ -9,6 +9,11 @@ class Item {
   final String uid;
   final DateTime createdAt;
 
+  String get displayCreatedAt {
+    if (createdAt == null) return '';
+    return '${createdAt.year}年${createdAt.month}月${createdAt.day}日 ${createdAt.hour}:${createdAt.minute}';
+  }
+
   Item({
     @required this.uid,
     this.title,

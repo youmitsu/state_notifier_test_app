@@ -57,10 +57,14 @@ class HomeBody extends StatelessWidget {
               .orderBy("createdAt", descending: true)
               .snapshots(),
           builder: (context, snapshot) {
-            if (!snapshot.hasData)
+            if (!snapshot.hasData || snapshot.data.documents.isEmpty) {
               return Center(
-                child: Text('欲しいものを追加しよう'),
+                child: Text(
+                  '欲しいものを追加しよう',
+                  style: Theme.of(context).textTheme.subhead,
+                ),
               );
+            }
             return ListView.builder(
               itemCount: snapshot.data.documents.length,
               itemBuilder: (context, index) {
@@ -96,9 +100,36 @@ class ItemCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
-                Text(item.title),
-                Text(item.url ?? ''),
-                Text(item.createdAt.toString()),
+                SizedBox(
+                  height: 100,
+                  child: Container(
+                    color: Colors.grey,
+                  ),
+                ),
+                Expanded(
+                  child: Container(
+                    margin: const EdgeInsets.all(8),
+                    child: Stack(
+                      children: <Widget>[
+                        Positioned(
+                          top: 0,
+                          left: 0,
+                          child: Text(item.title),
+                        ),
+                        Positioned(
+                          bottom: 0,
+                          left: 0,
+                          child: Text(item.url ?? ''),
+                        ),
+                        Positioned(
+                          right: 0,
+                          bottom: 0,
+                          child: Text(item.displayCreatedAt),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
               ],
             ),
           ),
