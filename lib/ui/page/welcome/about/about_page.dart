@@ -37,11 +37,11 @@ class AboutPage extends StatelessWidget {
                 height: 10,
               ),
               Text(
-                '欲しいものを集めて\nワクワクする毎日を。',
+                '欲しいものを集めて\n  ワクワクする毎日を。',
                 style: Theme.of(context).textTheme.subhead.copyWith(
                       color: Colors.white,
-                      height: 1.3,
-                      letterSpacing: 1.1,
+                      height: 1.35,
+                      letterSpacing: 1.52,
                     ),
                 textAlign: TextAlign.center,
               ),

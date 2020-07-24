@@ -1,6 +1,7 @@
 import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_state_notifier/flutter_state_notifier.dart';
+import 'package:provider/provider.dart';
 import 'package:state_notifier_test_app/config/app_themes.dart';
 import 'package:state_notifier_test_app/navigation/nav_type.dart';
 import 'package:state_notifier_test_app/ui/app/app_state.dart';
@@ -23,7 +24,9 @@ class App extends StatelessWidget {
                 context,
                 page: StateNotifierProvider<SplashStateNotifier, SplashState>(
                   child: SplashPage(),
-                  create: (_) => SplashStateNotifier(),
+                  create: (context) => SplashStateNotifier(
+                    appStateNotifier: context.read<AppStateNotifier>(),
+                  ),
                 ),
                 theme: BaseTheme(),
                 navType: NavType.fade,
